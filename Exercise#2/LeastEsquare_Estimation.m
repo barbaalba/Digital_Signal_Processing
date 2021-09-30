@@ -25,11 +25,11 @@ for k = 1:100
         noisySig = Noiselessout + noise;
    
         % Want to find the estimate of h knowing the convolution matrix
-        hestim = inv(segConvMat.'*segConvMat)*segConvMat.'*noisySig;
+        hestim = inv(segConvMat.'*segConvMat)*...
+            segConvMat.'*noisySig; % Least squared error estimation
         error = h - hestim;
         MSE = error.'*error / length(h);
         MSETotal(i) =  MSETotal(i) + 10*log10(MSE);
     end
 end
-
  MSETotal = MSETotal / k;
